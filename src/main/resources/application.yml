@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-boot-elk-logging
+
+#logging:
+#  file:
+#    path: .
