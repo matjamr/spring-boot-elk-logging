@@ -2,20 +2,21 @@
 <!DOCTYPE configuration>
 
 <configuration scan="true">
+    <!-- Include Spring Boot's default Logback configuration -->
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
+    <!-- Logstash appender configuration -->
     <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <param name="Encoding" value="UTF-8"/>
-        <remoteHost>localhost</remoteHost>
-        <port>5123</port>
         <destination>localhost:5123</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <customFields>{"app_name":"ElgLoggingSample", "host": "localhost", "app_port": "8080"}</customFields>
+            <includeMdc>true</includeMdc>
         </encoder>
     </appender>
 
+    <!-- Root logger configuration -->
     <root level="INFO">
-        <appender-ref ref="logstash"/>
+        <appender-ref ref="logstash"/> <!-- Logstash output with MDC context -->
     </root>
 
 </configuration>
