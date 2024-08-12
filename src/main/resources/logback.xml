@@ -2,10 +2,8 @@
 <!DOCTYPE configuration>
 
 <configuration scan="true">
-    <!-- Include Spring Boot's default Logback configuration -->
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
 
-    <!-- Logstash appender configuration -->
     <appender name="logstash" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>localhost:5123</destination>
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
@@ -14,9 +12,8 @@
         </encoder>
     </appender>
 
-    <!-- Root logger configuration -->
     <root level="INFO">
-        <appender-ref ref="logstash"/> <!-- Logstash output with MDC context -->
+        <appender-ref ref="logstash"/>
     </root>
 
 </configuration>
